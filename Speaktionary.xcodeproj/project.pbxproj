@@ -12,6 +12,8 @@
 		580175522157E80200474FB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580175502157E80200474FB4 /* Main.storyboard */; };
 		580175542157E80300474FB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 580175532157E80300474FB4 /* Assets.xcassets */; };
 		580175572157E80300474FB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580175552157E80300474FB4 /* LaunchScreen.storyboard */; };
+		5801755F2157ECE200474FB4 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 5801755E2157ECE200474FB4 /* Fonts */; };
+		580175612157EEE800474FB4 /* MicrophoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580175602157EEE800474FB4 /* MicrophoneButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		580175532157E80300474FB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		580175562157E80300474FB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		580175582157E80300474FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5801755E2157ECE200474FB4 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		580175602157EEE800474FB4 /* MicrophoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +58,12 @@
 		5801754B2157E80200474FB4 /* Speaktionary */ = {
 			isa = PBXGroup;
 			children = (
+				5801755E2157ECE200474FB4 /* Fonts */,
 				5801754C2157E80200474FB4 /* AppDelegate.swift */,
 				5801754E2157E80200474FB4 /* ViewController.swift */,
 				580175502157E80200474FB4 /* Main.storyboard */,
 				580175532157E80300474FB4 /* Assets.xcassets */,
+				580175602157EEE800474FB4 /* MicrophoneButton.swift */,
 				580175552157E80300474FB4 /* LaunchScreen.storyboard */,
 				580175582157E80300474FB4 /* Info.plist */,
 			);
@@ -125,6 +131,7 @@
 				580175572157E80300474FB4 /* LaunchScreen.storyboard in Resources */,
 				580175542157E80300474FB4 /* Assets.xcassets in Resources */,
 				580175522157E80200474FB4 /* Main.storyboard in Resources */,
+				5801755F2157ECE200474FB4 /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5801754F2157E80200474FB4 /* ViewController.swift in Sources */,
+				580175612157EEE800474FB4 /* MicrophoneButton.swift in Sources */,
 				5801754D2157E80200474FB4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

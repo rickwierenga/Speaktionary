@@ -1,24 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Bold.otf">
+            <string>SFProDisplay-Bold</string>
+        </array>
+        <array key="SF-Pro-Display-Semibold.otf">
+            <string>SFProDisplay-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Speaktionary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaktionary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghj-qY-Als">
+                                <rect key="frame" x="126.5" y="28" width="122" height="24"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="20"/>
+                                <color key="textColor" red="0.098039215686274508" green="0.65098039215686276" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="LrD-sI-zND">
+                                <rect key="frame" x="16" y="175.5" width="343" height="42"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="35"/>
+                                <color key="textColor" red="0.15686274509803921" green="0.80392156862745101" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTP-Ug-AR5">
+                                <rect key="frame" x="16" y="233.5" width="343" height="200"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guJ-kx-0Vy">
+                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot9-5d-wNT" customClass="MicrophoneButton" customModule="Speaktionary" customModuleProvider="target">
+                                        <rect key="frame" x="127.5" y="40" width="120" height="120"/>
+                                        <color key="backgroundColor" red="0.098039215690000001" green="0.65098039220000004" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="6Kx-Cv-Cxm"/>
+                                            <constraint firstAttribute="height" constant="120" id="TEX-va-WYp"/>
+                                        </constraints>
+                                        <state key="normal" image="microphone"/>
+                                        <connections>
+                                            <action selector="microphoneTouchesBegan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Shk-fc-Pt0"/>
+                                            <action selector="microphoneTouchesEnded:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tYg-Pg-iRY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.80392156859999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ot9-5d-wNT" firstAttribute="centerY" secondItem="guJ-kx-0Vy" secondAttribute="centerY" id="7Nh-Yc-TKO"/>
+                                    <constraint firstItem="ot9-5d-wNT" firstAttribute="centerX" secondItem="guJ-kx-0Vy" secondAttribute="centerX" id="Wyi-nb-hXC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="guJ-kx-0Vy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="03u-Qx-tg3"/>
+                            <constraint firstItem="Ghj-qY-Als" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1ws-Tu-t87"/>
+                            <constraint firstItem="Ghj-qY-Als" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="3O3-VV-T7b"/>
+                            <constraint firstItem="bTP-Ug-AR5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MAH-78-0T6"/>
+                            <constraint firstItem="bTP-Ug-AR5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MWy-Vw-Odq"/>
+                            <constraint firstItem="guJ-kx-0Vy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="V0E-6x-WjU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bTP-Ug-AR5" secondAttribute="trailing" constant="16" id="WN2-6l-rq0"/>
+                            <constraint firstItem="bTP-Ug-AR5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="XVz-yX-bwb"/>
+                            <constraint firstItem="LrD-sI-zND" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YKq-h0-Gq4"/>
+                            <constraint firstItem="guJ-kx-0Vy" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="bCo-E1-ekx"/>
+                            <constraint firstItem="guJ-kx-0Vy" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="ejP-Q9-Zlk"/>
+                            <constraint firstItem="bTP-Ug-AR5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="gKv-nl-ROm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LrD-sI-zND" secondAttribute="trailing" constant="16" id="h3h-nZ-uRh"/>
+                            <constraint firstItem="LrD-sI-zND" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="iA0-sr-nKx"/>
+                            <constraint firstItem="bTP-Ug-AR5" firstAttribute="top" secondItem="LrD-sI-zND" secondAttribute="bottom" constant="16" id="kbi-jD-WqQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="microphoneButton" destination="ot9-5d-wNT" id="PBC-t1-te5"/>
+                        <outlet property="resultLabel" destination="bTP-Ug-AR5" id="wj8-rU-h7x"/>
+                        <outlet property="waveView" destination="guJ-kx-0Vy" id="u0w-h7-1Jc"/>
+                        <outlet property="wordLabel" destination="LrD-sI-zND" id="vyT-WF-fX8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="microphone" width="42" height="74"/>
+    </resources>
 </document>
