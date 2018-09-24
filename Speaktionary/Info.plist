@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationCategoryType</key>
+	<string>Privacy - Microphone Usage Description</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -43,5 +45,7 @@
 	</array>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Speaktionary needs to use the microphone to hear the words you say.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Use the microphone to record audio.</string>
 </dict>
 </plist>
