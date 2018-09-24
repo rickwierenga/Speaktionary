@@ -55,8 +55,8 @@
                                         </constraints>
                                         <state key="normal" image="microphone"/>
                                         <connections>
-                                            <action selector="microphoneTouchesBegan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Shk-fc-Pt0"/>
-                                            <action selector="microphoneTouchesEnded:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tYg-Pg-iRY"/>
+                                            <action selector="microphoneTouchesBegan:" destination="BYZ-38-t0r" eventType="touchDown" id="9UQ-9T-wKc"/>
+                                            <action selector="microphoneTouchesEnded:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8SY-pC-jQD"/>
                                         </connections>
                                     </button>
                                 </subviews>
