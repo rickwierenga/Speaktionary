@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +17,28 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoK-qO-ntW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.80392156859999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="YLB-9c-GWW">
+                                <rect key="frame" x="94" y="168.5" width="187.5" height="330"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YLB-9c-GWW" secondAttribute="height" multiplier="21:37" id="KED-KB-uJt"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MoK-qO-ntW" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="KRw-eZ-4m3"/>
+                            <constraint firstItem="MoK-qO-ntW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SWf-63-0Og"/>
+                            <constraint firstItem="YLB-9c-GWW" firstAttribute="width" secondItem="MoK-qO-ntW" secondAttribute="width" multiplier="0.5" id="ecN-Dh-V1Y"/>
+                            <constraint firstItem="MoK-qO-ntW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hKd-go-v11"/>
+                            <constraint firstItem="YLB-9c-GWW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="jYE-Da-tAg"/>
+                            <constraint firstItem="YLB-9c-GWW" firstAttribute="centerX" secondItem="MoK-qO-ntW" secondAttribute="centerX" id="pYq-tk-gbu"/>
+                            <constraint firstItem="MoK-qO-ntW" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="r23-gp-avf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +47,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="microphone" width="42" height="74"/>
+    </resources>
 </document>
