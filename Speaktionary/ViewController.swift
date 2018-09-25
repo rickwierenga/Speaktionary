@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     @IBAction func microphoneTouchesEnded(_ sender: UIButton) {
         // end session
         recognitionRequest.endAudio()
-        session = nil
+        audioEngine.stop()
     }
     
     // MARK: - Recording
@@ -138,11 +138,46 @@ class ViewController: UIViewController {
         // set up the audio buffers
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            self.recognitionRequest?.append(buffer)}
+            // append buffer to recogniztion request. The request knows what memory to use
+            self.recognitionRequest?.append(buffer)
+            
+            // test if channel data is present.
+            guard let channelData = buffer.floatChannelData else {
+                    return
+            }
+            
+            // get channel data
+            let channelDataValue = channelData.pointee
+            let channelDataValueArray = stride(from: 0,
+                                               to: Int(buffer.frameLength),
+                                               by: buffer.stride).map{ channelDataValue[$0] }
+
+            // calculate value
+            let rms = sqrt(channelDataValueArray.map{ $0 * $0 }.reduce(0, +) / Float(buffer.frameLength))
+            let avgPower = 20 * log10(rms)
+            let meterLevel = self.scaledPower(power: avgPower)
+            
+            // set the wave view's height
+        }
         
         // prepare and start the audio engine
         audioEngine.prepare()
         try! audioEngine.start()
+    }
+    
+    private func scaledPower(power: Float) -> Float {
+        // 1
+        guard power.isFinite else { return 0.0 }
+        
+        // 2
+        if power < -80.0 {
+            return 0.0
+        } else if power >= 1.0 {
+            return 1.0
+        } else {
+            // 3
+            return (abs(-80.0) - abs(power)) / abs(-80.0)
+        }
     }
 }
 
