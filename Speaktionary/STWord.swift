@@ -50,17 +50,24 @@ public class STWord {
             if let data = data {
                 // data is succesfully fetched
                 // load the definition from the json
-                let definition = try! JSON(data: data)["results"].arrayValue[0]["lexicalEntries"].arrayValue[0]["entries"].arrayValue[0]["senses"].arrayValue[0]["definitions"].arrayValue[0].stringValue
-                
-                // set the definition of self on the main thread
-                DispatchQueue.main.async {
-                    self.definition = definition
-                    completion(definition)
+                if let definition = try? JSON(data: data)["results"].arrayValue[0]["lexicalEntries"].arrayValue[0]["entries"].arrayValue[0]["senses"].arrayValue[0]["definitions"].arrayValue[0].stringValue {
+                    // set the definition of self on the main thread
+                    DispatchQueue.main.async {
+                        self.definition = definition
+                        completion(definition)
+                    }
                 }
             } else if let error = error {
-                // the word could not be fetched
-                self.definition = error.localizedDescription
-                completion(error.localizedDescription)
+                DispatchQueue.main.async {
+                    // the word could not be fetched
+                    self.definition = error.localizedDescription
+                    completion(error.localizedDescription)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.definition = "not found"
+                    completion("not found")
+                }
             }
         }).resume()
     }
