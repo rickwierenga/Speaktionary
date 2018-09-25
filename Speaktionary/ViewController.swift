@@ -112,15 +112,26 @@ class ViewController: UIViewController {
             return
         }
         
+        // prepare the UI
+        resultLabel.text = "Loading..."
+        
         recognizer.recognitionTask(with: recognitionRequest) { (result, error) in
             guard let result = result else {
                 // Recognition failed, so check error for details and handle it
+                self.wordLabel.text = "Please Retry"
+                self.resultLabel.text = error?.localizedDescription
                 return
             }
-            if result.isFinal {
-                let word = result.bestTranscription.formattedString.components(separatedBy: " ").first ?? "Error"
-                self.wordLabel.text = word
-                self.request(word: word)
+            
+            if result.isFinal, let entry = result.bestTranscription.formattedString.components(separatedBy: " ").first {
+                // create a word object
+                let word = STWord(entry: entry)
+                
+                // tell STWord to fetch the defition. Once ready, set the definition to the resultLabel
+                self.wordLabel.text = word.entry
+                word.fetchMeaning({ (definition) in
+                    self.resultLabel.text = word.definition
+                })
             }
         }
         
@@ -132,32 +143,6 @@ class ViewController: UIViewController {
         // prepare and start the audio engine
         audioEngine.prepare()
         try! audioEngine.start()
-    }
-    
-    // MARK: - API
-    private let KEY = "89c4577f743ced6ed32ce6da1b86da4e"
-    private let APP_ID = "d556f7cd"
-    private let BASE_URL = "https://od-api.oxforddictionaries.com/api/v1"
-    private let language = "en"
-    
-    private func request(word: String) {
-        var request = URLRequest(url: URL(string: "https://od-api.oxforddictionaries.com:443/api/v1/entries/\(language)/\(word.lowercased())")!)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue(APP_ID, forHTTPHeaderField: "app_id")
-        request.addValue(KEY, forHTTPHeaderField: "app_key")
-        
-        let session = URLSession.shared
-        _ = session.dataTask(with: request, completionHandler: { data, response, error in
-            if let data = data {
-                print("1", try! JSON(data: data)["results"])
-                let v = try! JSON(data: data)["results"].arrayValue[0]["lexicalEntries"].arrayValue[0]["entries"].arrayValue[0]["senses"].arrayValue[0]["definitions"].arrayValue[0].stringValue
-                DispatchQueue.main.async {
-                    self.resultLabel.text = v
-                }
-            } else {
-                print(error!)
-            }
-        }).resume()
     }
 }
 
