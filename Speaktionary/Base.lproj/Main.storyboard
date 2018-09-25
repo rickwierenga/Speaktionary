@@ -46,35 +46,31 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guJ-kx-0Vy">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot9-5d-wNT" customClass="MicrophoneButton" customModule="Speaktionary" customModuleProvider="target">
-                                        <rect key="frame" x="127.5" y="40" width="120" height="120"/>
-                                        <color key="backgroundColor" red="0.098039215690000001" green="0.65098039220000004" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="6Kx-Cv-Cxm"/>
-                                            <constraint firstAttribute="height" constant="120" id="TEX-va-WYp"/>
-                                        </constraints>
-                                        <state key="normal" image="microphone"/>
-                                        <connections>
-                                            <action selector="microphoneTouchesBegan:" destination="BYZ-38-t0r" eventType="touchDown" id="9UQ-9T-wKc"/>
-                                            <action selector="microphoneTouchesEnded:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8SY-pC-jQD"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.80392156859999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="ot9-5d-wNT" firstAttribute="centerY" secondItem="guJ-kx-0Vy" secondAttribute="centerY" id="7Nh-Yc-TKO"/>
-                                    <constraint firstItem="ot9-5d-wNT" firstAttribute="centerX" secondItem="guJ-kx-0Vy" secondAttribute="centerX" id="Wyi-nb-hXC"/>
-                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot9-5d-wNT" customClass="MicrophoneButton" customModule="Speaktionary" customModuleProvider="target">
+                                <rect key="frame" x="127.5" y="507" width="120" height="120"/>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.65098039220000004" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="6Kx-Cv-Cxm"/>
+                                    <constraint firstAttribute="height" constant="120" id="TEX-va-WYp"/>
+                                </constraints>
+                                <state key="normal" image="microphone"/>
+                                <connections>
+                                    <action selector="microphoneTouchesBegan:" destination="BYZ-38-t0r" eventType="touchDown" id="9UQ-9T-wKc"/>
+                                    <action selector="microphoneTouchesEnded:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8SY-pC-jQD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="guJ-kx-0Vy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="03u-Qx-tg3"/>
                             <constraint firstItem="Ghj-qY-Als" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1ws-Tu-t87"/>
                             <constraint firstItem="Ghj-qY-Als" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="3O3-VV-T7b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ot9-5d-wNT" secondAttribute="bottom" constant="40" id="IxS-bE-d0X"/>
                             <constraint firstItem="bTP-Ug-AR5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MAH-78-0T6"/>
                             <constraint firstItem="bTP-Ug-AR5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MWy-Vw-Odq"/>
+                            <constraint firstItem="ot9-5d-wNT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PrW-Ks-LGM"/>
                             <constraint firstItem="guJ-kx-0Vy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="V0E-6x-WjU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bTP-Ug-AR5" secondAttribute="trailing" constant="16" id="WN2-6l-rq0"/>
                             <constraint firstItem="bTP-Ug-AR5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="XVz-yX-bwb"/>
@@ -83,6 +79,7 @@
                             <constraint firstItem="guJ-kx-0Vy" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="ejP-Q9-Zlk"/>
                             <constraint firstItem="bTP-Ug-AR5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="gKv-nl-ROm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LrD-sI-zND" secondAttribute="trailing" constant="16" id="h3h-nZ-uRh"/>
+                            <constraint firstItem="ot9-5d-wNT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hYo-lg-KTe"/>
                             <constraint firstItem="LrD-sI-zND" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="iA0-sr-nKx"/>
                             <constraint firstItem="bTP-Ug-AR5" firstAttribute="top" secondItem="LrD-sI-zND" secondAttribute="bottom" constant="16" id="kbi-jD-WqQ"/>
                         </constraints>

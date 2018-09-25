@@ -17,9 +17,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var waveView: UIView!
     @IBOutlet weak var microphoneButton: MicrophoneButton!
     
+    private var initialWaveViewHeight: CGFloat!
+    
     // MARK: - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set to reference later
+        initialWaveViewHeight = waveView.frame.height
         
         // check auth
         switch SFSpeechRecognizer.authorizationStatus() {
@@ -157,7 +162,13 @@ class ViewController: UIViewController {
             let avgPower = 20 * log10(rms)
             let meterLevel = self.scaledPower(power: avgPower)
             
-            // set the wave view's height
+            // set the wave views height
+            let newHeight = (CGFloat(meterLevel) + 1)  * self.initialWaveViewHeight
+            DispatchQueue.main.async {
+                self.waveView.frame = CGRect(x: self.waveView.frame.minX, y: self.view.frame.maxY - newHeight, width: self.waveView.frame.width, height: newHeight)
+                self.microphoneButton.updateConstraints()
+                print(newHeight)
+            }
         }
         
         // prepare and start the audio engine
