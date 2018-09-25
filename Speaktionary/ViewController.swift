@@ -118,7 +118,7 @@ class ViewController: UIViewController {
                 return
             }
             if result.isFinal {
-                let word = result.bestTranscription.formattedString
+                let word = result.bestTranscription.formattedString.components(separatedBy: " ").first ?? "Error"
                 self.wordLabel.text = word
                 self.request(word: word)
             }
