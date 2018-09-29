@@ -26,6 +26,10 @@ class SavedTableViewController: UITableViewController {
                                           cacheName: "SavedWords")
     }()
     
+    private struct Constants {
+        static let showWord = "ShowWord"
+    }
+    
     // MARK: - Helpers
     private func fetch() {
         do {
@@ -96,4 +100,18 @@ class SavedTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.showWord, sender: indexPath)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case Constants.showWord:
+            let vc = segue.destination as! ViewController
+            vc.word = fetchedResultsContorller.object(at: sender as! IndexPath)
+        default:
+            break
+        }
+    }
 }

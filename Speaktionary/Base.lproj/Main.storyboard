@@ -140,6 +140,9 @@
                             <outlet property="delegate" destination="lHN-6g-rXU" id="hRF-MT-bN6"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowWord" id="3zQ-g2-Xah"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EV-IH-eLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

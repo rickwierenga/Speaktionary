@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     private lazy var managedContext: NSManagedObjectContext = {
         return (UIApplication.shared.delegate as! AppDelegate).managedContext
     }()
+    
+    public var word: STWord?
         
     // MARK: - View controller life cycle
     override func viewDidLoad() {
@@ -66,6 +68,12 @@ class ViewController: UIViewController {
                     }
                 }
             }
+        }
+        
+        // load default data
+        if let word = word {
+            wordLabel.text = word.entry!
+            resultLabel.text = word.definition!
         }
     }
     
@@ -141,6 +149,7 @@ class ViewController: UIViewController {
                 self.wordLabel.text = word.entry
                 word.fetchMeaning({ (definition) in
                     self.resultLabel.text = word.definition
+                    word.definition = definition
                 })
                 
                 // save to core data
