@@ -13,6 +13,9 @@
         <array key="SF-Pro-Display-Bold.otf">
             <string>SFProDisplay-Bold</string>
         </array>
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
         <array key="SF-Pro-Display-Semibold.otf">
             <string>SFProDisplay-Semibold</string>
         </array>
@@ -98,13 +101,13 @@
         <!--Navigation Controller-->
         <scene sceneID="fgn-V7-whk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XvU-jz-IUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" id="ntc-0m-0hC" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KhT-N9-VbZ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XvU-jz-IUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1782" y="132"/>
         </scene>
@@ -116,6 +119,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexColor" red="0.098039215690000001" green="0.65098039220000004" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedCell" textLabel="E6h-rJ-Nwl" style="IBUITableViewCellStyleDefault" id="Uxh-Jl-64s" customClass="Sav">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -288,28 +293,118 @@
             </objects>
             <point key="canvasLocation" x="779" y="936"/>
         </scene>
-        <!--View Controller-->
+        <!--About View Controller-->
         <scene sceneID="9hd-MR-GIX">
             <objects>
-                <viewController storyboardIdentifier="AboutViewController" id="x59-EV-NY5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" id="x59-EV-NY5" customClass="AboutViewController" customModule="Speaktionary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4SF-6g-LiL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaktionary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BID-vu-ClF">
+                                <rect key="frame" x="96.5" y="100" width="182" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="182" id="5oR-Or-1iQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="30"/>
+                                <color key="textColor" red="0.098039215690000001" green="0.65098039220000004" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vh-Vh-FfX">
+                                <rect key="frame" x="137.5" y="144" width="100.5" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="G2g-Hv-Awp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="20"/>
+                                <color key="textColor" red="0.15686274510000001" green="0.80392156859999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaktionary is an open source app. View the code or contribute here: " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lQ-pO-LzR">
+                                <rect key="frame" x="16" y="200" width="343" height="41"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaktionary uses SwiftyJSON from fetching words from the Oxford Dictionary API. View them both here:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9e-bW-oRe">
+                                <rect key="frame" x="16" y="314" width="343" height="61"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vny-Lx-toq">
+                                <rect key="frame" x="16" y="249" width="343" height="33"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <state key="normal" title="GitHub Project">
+                                    <color key="titleColor" red="0.15686274510000001" green="0.80392156859999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="github" destination="x59-EV-NY5" eventType="touchUpInside" id="yQv-C8-xII"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eM-js-THa">
+                                <rect key="frame" x="16" y="383" width="343" height="33"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <state key="normal" title="SwiftyJSON">
+                                    <color key="titleColor" red="0.15686274510000001" green="0.80392156859999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="swiftyJSON" destination="x59-EV-NY5" eventType="touchUpInside" id="lnz-mo-u4Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3I-hJ-dgs">
+                                <rect key="frame" x="16" y="424" width="343" height="33"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <state key="normal" title="Oxford Developers">
+                                    <color key="titleColor" red="0.15686274510000001" green="0.80392156859999997" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="oxford" destination="x59-EV-NY5" eventType="touchUpInside" id="K5f-wO-7pj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©2018 Rick Wierenga" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGt-yk-STh">
+                                <rect key="frame" x="108.5" y="631" width="158" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0Wd-jv-UFF" firstAttribute="trailing" secondItem="1eM-js-THa" secondAttribute="trailing" constant="16" id="3aQ-yR-Y2j"/>
+                            <constraint firstItem="wGt-yk-STh" firstAttribute="centerX" secondItem="4SF-6g-LiL" secondAttribute="centerX" id="JYx-Wm-azZ"/>
+                            <constraint firstItem="1eM-js-THa" firstAttribute="top" secondItem="O9e-bW-oRe" secondAttribute="bottom" constant="8" id="Mbg-WZ-XNd"/>
+                            <constraint firstItem="0Wd-jv-UFF" firstAttribute="trailing" secondItem="A3I-hJ-dgs" secondAttribute="trailing" constant="16" id="OoF-VY-WEj"/>
+                            <constraint firstItem="O9e-bW-oRe" firstAttribute="leading" secondItem="0Wd-jv-UFF" secondAttribute="leading" constant="16" id="SXO-jN-Vqn"/>
+                            <constraint firstItem="BID-vu-ClF" firstAttribute="top" secondItem="0Wd-jv-UFF" secondAttribute="top" constant="80" id="TWL-7V-IMi"/>
+                            <constraint firstItem="3vh-Vh-FfX" firstAttribute="centerX" secondItem="4SF-6g-LiL" secondAttribute="centerX" id="WrK-BW-Ki0"/>
+                            <constraint firstItem="A3I-hJ-dgs" firstAttribute="top" secondItem="1eM-js-THa" secondAttribute="bottom" constant="8" id="XyS-UI-ZtH"/>
+                            <constraint firstItem="1eM-js-THa" firstAttribute="leading" secondItem="0Wd-jv-UFF" secondAttribute="leading" constant="16" id="aGr-Yh-gfH"/>
+                            <constraint firstItem="8lQ-pO-LzR" firstAttribute="top" secondItem="3vh-Vh-FfX" secondAttribute="bottom" constant="32" id="foe-AX-WbG"/>
+                            <constraint firstItem="0Wd-jv-UFF" firstAttribute="trailing" secondItem="O9e-bW-oRe" secondAttribute="trailing" constant="16" id="gDk-TD-xGj"/>
+                            <constraint firstItem="BID-vu-ClF" firstAttribute="centerX" secondItem="4SF-6g-LiL" secondAttribute="centerX" id="gbE-et-23c"/>
+                            <constraint firstItem="8lQ-pO-LzR" firstAttribute="leading" secondItem="0Wd-jv-UFF" secondAttribute="leading" constant="16" id="haT-58-1Hb"/>
+                            <constraint firstItem="3vh-Vh-FfX" firstAttribute="top" secondItem="BID-vu-ClF" secondAttribute="bottom" constant="8" id="hy5-5O-td7"/>
+                            <constraint firstItem="0Wd-jv-UFF" firstAttribute="trailing" secondItem="8lQ-pO-LzR" secondAttribute="trailing" constant="16" id="lN0-LZ-Urj"/>
+                            <constraint firstItem="Vny-Lx-toq" firstAttribute="top" secondItem="8lQ-pO-LzR" secondAttribute="bottom" constant="8" id="o3a-ek-LTP"/>
+                            <constraint firstItem="0Wd-jv-UFF" firstAttribute="bottom" secondItem="wGt-yk-STh" secondAttribute="bottom" constant="16" id="pMG-Rk-RQ7"/>
+                            <constraint firstItem="0Wd-jv-UFF" firstAttribute="trailing" secondItem="Vny-Lx-toq" secondAttribute="trailing" constant="16" id="rqG-zB-CTt"/>
+                            <constraint firstItem="A3I-hJ-dgs" firstAttribute="leading" secondItem="0Wd-jv-UFF" secondAttribute="leading" constant="16" id="taV-Xy-26E"/>
+                            <constraint firstItem="O9e-bW-oRe" firstAttribute="top" secondItem="Vny-Lx-toq" secondAttribute="bottom" constant="32" id="x6S-Uw-Zdu"/>
+                            <constraint firstItem="Vny-Lx-toq" firstAttribute="leading" secondItem="0Wd-jv-UFF" secondAttribute="leading" constant="16" id="zpP-Y9-lSs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0Wd-jv-UFF"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eo2-Gs-CuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2588" y="834"/>
+            <point key="canvasLocation" x="2588" y="833.43328335832086"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cnb-1t-UjX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Pp-sG-n3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uO7-st-wtT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" shadowImage="white" id="E56-cC-Z8p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E56-cC-Z8p">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -323,6 +418,7 @@
                         <segue destination="ieA-Jw-CQI" kind="relationship" relationship="rootViewController" id="aJl-jI-pKS"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Pp-sG-n3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-86" y="132"/>
         </scene>
@@ -333,6 +429,5 @@
         <image name="microphone" width="42" height="74"/>
         <image name="saved" width="14" height="13"/>
         <image name="search" width="14" height="16"/>
-        <image name="white" width="1" height="1"/>
     </resources>
 </document>
