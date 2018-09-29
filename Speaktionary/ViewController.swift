@@ -9,6 +9,7 @@
 import UIKit
 import Speech
 import AVFoundation
+import CoreData
 
 class ViewController: UIViewController {
     // MARK: - Private properties
@@ -18,6 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var microphoneButton: MicrophoneButton!
     
     private var initialWaveViewHeight: CGFloat!
+    
+    var managedContext: NSManagedObjectContext!
     
     // MARK: - View controller life cycle
     override func viewDidLoad() {
@@ -130,13 +133,21 @@ class ViewController: UIViewController {
             
             if result.isFinal, let entry = result.bestTranscription.formattedString.components(separatedBy: " ").first {
                 // create a word object
-                let word = STWord(entry: entry)
+                let word = STWord(entry: entry, entity: STWord.entity(), insertInto: self.managedContext)
                 
                 // tell STWord to fetch the defition. Once ready, set the definition to the resultLabel
                 self.wordLabel.text = word.entry
                 word.fetchMeaning({ (definition) in
                     self.resultLabel.text = word.definition
                 })
+                
+                // save to core data
+                do {
+                    try self.managedContext.save()
+                }
+                catch {
+                    print("error saving to core data", error)
+                }
             }
         }
         
@@ -167,7 +178,6 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 self.waveView.frame = CGRect(x: self.waveView.frame.minX, y: self.view.frame.maxY - newHeight, width: self.waveView.frame.width, height: newHeight)
                 self.microphoneButton.updateConstraints()
-                print(newHeight)
             }
         }
         

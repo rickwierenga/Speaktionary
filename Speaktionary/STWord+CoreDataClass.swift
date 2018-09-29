@@ -1,17 +1,18 @@
 //
-//  STWord.swift
+//  STWord+CoreDataClass.swift
 //  Speaktionary
 //
-//  Created by Rick Wierenga on 25/09/2018.
+//  Created by Rick Wierenga on 29/09/2018.
 //  Copyright © 2018 Rick Wierenga. All rights reserved.
+//
 //
 
 import Foundation
-
+import CoreData
 
 /// A class that manages a word and the accompanying defition.
-public class STWord {
-
+@objc(STWord)
+public class STWord: NSManagedObject {
     // MARK: - Private Variables
     private struct NetworkingConstants {
         static let KEY = "89c4577f743ced6ed32ce6da1b86da4e"
@@ -21,18 +22,13 @@ public class STWord {
     }
     
     // MARK: - Public API
-    /// The entry. This
-    public var entry: String
-    
-    /// The definition of the current entry. You must call fetchMeaning to fetch it otherwise it will be nil.
-    public var definition: String?
     
     /// Fetch the meaning of the current entry. You must assign the entry first.
     ///
     /// - Parameter completion: A closure that will be called upon completionl
     public func fetchMeaning(_ completion: @escaping (String) -> Void) {
         // make sure entry is not nil
-        guard entry != "" else {
+        guard let entry = entry,  entry != ""  else {
             fatalError("You must set an entry before fetching the defintion.")
         }
         
@@ -73,7 +69,12 @@ public class STWord {
     }
     
     // MARK: - Initializers
-    public init(entry: String) {
+    public init(entry: String, entity: NSEntityDescription, insertInto context: NSManagedObjectContext) {
+        super.init(entity: entity, insertInto: context)
         self.entry = entry
+    }
+    
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
 }
