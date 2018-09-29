@@ -25,7 +25,7 @@ class ContainerViewController: UIViewController {
     
     // MARK: - Life cycle
     override func viewDidLoad() {
-        showVC(.saved) // default is record
+        showVC(.record) // default is record
     }
     
     // MARK: - Public API

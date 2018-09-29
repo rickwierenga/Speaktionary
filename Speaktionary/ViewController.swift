@@ -20,8 +20,10 @@ class ViewController: UIViewController {
     
     private var initialWaveViewHeight: CGFloat!
     
-    var managedContext: NSManagedObjectContext!
-    
+    private lazy var managedContext: NSManagedObjectContext = {
+        return (UIApplication.shared.delegate as! AppDelegate).managedContext
+    }()
+        
     // MARK: - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

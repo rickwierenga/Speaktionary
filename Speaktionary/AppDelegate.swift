@@ -31,16 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var managedContext: NSManagedObjectContext = {
         return self.storeContainer.viewContext
-    }()
-    
-    // MARK: - Application life cycle
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        guard let vc = window?.rootViewController as? ViewController else { return true }
-        vc.managedContext = self.managedContext
-        
-        return true
-    }
-    
+    }()    
 }
 
