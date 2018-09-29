@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         // load default data
         if let word = word {
             wordLabel.text = word.entry!
-            resultLabel.text = word.definition!
+            resultLabel.text = word.definition ?? "no definition saved"
         }
     }
     
