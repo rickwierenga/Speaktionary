@@ -17,6 +17,8 @@
 		58DA3D9E215F90E500D9ED0F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3D9C215F90E500D9ED0F /* Model.xcdatamodeld */; };
 		58DA3DA1215F912C00D9ED0F /* STWord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3D9F215F912C00D9ED0F /* STWord+CoreDataClass.swift */; };
 		58DA3DA2215F912C00D9ED0F /* STWord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3DA0215F912C00D9ED0F /* STWord+CoreDataProperties.swift */; };
+		58DA3DA4215FA24700D9ED0F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3DA3215FA24700D9ED0F /* ContainerViewController.swift */; };
+		58DA3DA6215FA25C00D9ED0F /* SideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3DA5215FA25C00D9ED0F /* SideTableViewController.swift */; };
 		58E7D7C62159704800094461 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E7D7C52159704800094461 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		58DA3D9D215F90E500D9ED0F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		58DA3D9F215F912C00D9ED0F /* STWord+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STWord+CoreDataClass.swift"; sourceTree = "<group>"; };
 		58DA3DA0215F912C00D9ED0F /* STWord+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STWord+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		58DA3DA3215FA24700D9ED0F /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		58DA3DA5215FA25C00D9ED0F /* SideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTableViewController.swift; sourceTree = "<group>"; };
 		58E7D7C52159704800094461 /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +70,8 @@
 		5801754B2157E80200474FB4 /* Speaktionary */ = {
 			isa = PBXGroup;
 			children = (
+				58DA3DA3215FA24700D9ED0F /* ContainerViewController.swift */,
+				58DA3DA5215FA25C00D9ED0F /* SideTableViewController.swift */,
 				58DA3D9F215F912C00D9ED0F /* STWord+CoreDataClass.swift */,
 				58DA3DA0215F912C00D9ED0F /* STWord+CoreDataProperties.swift */,
 				5801755E2157ECE200474FB4 /* Fonts */,
@@ -156,11 +162,13 @@
 			files = (
 				58DA3DA2215F912C00D9ED0F /* STWord+CoreDataProperties.swift in Sources */,
 				5801754F2157E80200474FB4 /* ViewController.swift in Sources */,
+				58DA3DA4215FA24700D9ED0F /* ContainerViewController.swift in Sources */,
 				580175612157EEE800474FB4 /* MicrophoneButton.swift in Sources */,
 				5801754D2157E80200474FB4 /* AppDelegate.swift in Sources */,
 				58DA3DA1215F912C00D9ED0F /* STWord+CoreDataClass.swift in Sources */,
 				58E7D7C62159704800094461 /* SwiftyJSON.swift in Sources */,
 				58DA3D9E215F90E500D9ED0F /* Model.xcdatamodeld in Sources */,
+				58DA3DA6215FA25C00D9ED0F /* SideTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
