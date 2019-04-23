@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         // set to reference later
         initialWaveViewHeight = waveView.frame.height
         
-        // check auth
+        // check authorization
         switch SFSpeechRecognizer.authorizationStatus() {
         case .authorized:
             self.microphoneButton.isEnabled = true
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
             }
         }
         
-        // load default data
+        // load word if it was added by the saved table view controller.
         if let word = word {
             wordLabel.text = word.entry!
             resultLabel.text = word.definition ?? "no definition saved"
@@ -120,47 +120,8 @@ class ViewController: UIViewController {
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         recognitionRequest.shouldReportPartialResults = true
 
-        // start a recognition task
-        guard let recognizer = SFSpeechRecognizer() else {
-            // A recognizer is not supported for the current locale
-            return
-        }
-        if !recognizer.isAvailable {
-            // The recognizer is not available right now
-            return
-        }
-        
-        // prepare the UI
-        resultLabel.text = "Loading..."
-        
-        recognizer.recognitionTask(with: recognitionRequest) { (result, error) in
-            guard let result = result else {
-                // Recognition failed, so check error for details and handle it
-                self.wordLabel.text = "Please Retry"
-                self.resultLabel.text = error?.localizedDescription
-                return
-            }
-            
-            if result.isFinal, let entry = result.bestTranscription.formattedString.components(separatedBy: " ").first {
-                // create a word object
-                let word = STWord(entry: entry, entity: STWord.entity(), insertInto: self.managedContext)
-                
-                // tell STWord to fetch the defition. Once ready, set the definition to the resultLabel
-                self.wordLabel.text = word.entry
-                word.fetchMeaning({ (definition) in
-                    self.resultLabel.text = word.definition
-                    word.definition = definition
-                })
-                
-                // save to core data
-                do {
-                    try self.managedContext.save()
-                }
-                catch {
-                    print("error saving to core data", error)
-                }
-            }
-        }
+        // update classifications
+        updateClassification(with: recognitionRequest)
         
         // set up the audio buffers
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -180,7 +141,8 @@ class ViewController: UIViewController {
                                                by: buffer.stride).map{ channelDataValue[$0] }
 
             // calculate value
-            let rms = sqrt(channelDataValueArray.map{ $0 * $0 }.reduce(0, +) / Float(buffer.frameLength))
+            let average = channelDataValueArray.map{ $0 * $0 }.reduce(0, +) / Float(buffer.frameLength)
+            let rms = sqrt(average)
             let avgPower = 20 * log10(rms)
             let meterLevel = self.scaledPower(power: avgPower)
             
@@ -197,18 +159,62 @@ class ViewController: UIViewController {
         try! audioEngine.start()
     }
     
-    private func scaledPower(power: Float) -> Float {
-        // 1
+    private func updateClassification(with recognitionRequest: SFSpeechAudioBufferRecognitionRequest) {
+        // start a recognition task
+        guard let recognizer = SFSpeechRecognizer() else {
+            // A recognizer is not supported for the current locale
+            return
+        }
+        if !recognizer.isAvailable {
+            // The recognizer is not available right now
+            return
+        }
+        
+        // Update the UI
+        // TODO: This might an activity controller.
+        resultLabel.text = "Loading..."
+        
+        recognizer.recognitionTask(with: recognitionRequest) { (result, error) in
+            guard let result = result else {
+                // Recognition failed, so check error for details and handle it
+                self.wordLabel.text = "Please Retry"
+                self.resultLabel.text = error?.localizedDescription
+                return
+            }
+            
+            if result.isFinal, let entry = result.bestTranscription.formattedString.components(separatedBy: " ").first {
+                // create a word object
+                let word = STWord(entry: entry, entity: STWord.entity(), insertInto: self.managedContext)
+                
+                // tell STWord to fetch the defition. Once ready, set the definition to the resultLabel
+                self.wordLabel.text = word.entry
+                word.fetchMeaning({ definition in
+                    self.resultLabel.text = word.definition
+                    word.definition = definition
+                })
+                
+                // save to core data
+                do {
+                    try self.managedContext.save()
+                }
+                catch {
+                    print("error saving to core data", error)
+                }
+            }
+        }
+    }
+    
+    fileprivate func scaledPower(power: Float) -> Float {
         guard power.isFinite else { return 0.0 }
         
-        // 2
+        // Make sure the power has a reasonable value.
         if power < -80.0 {
             return 0.0
         } else if power >= 1.0 {
             return 1.0
         } else {
-            // 3
-            return (abs(-80.0) - abs(power)) / abs(-80.0)
+            // Perform the scaling.
+            return (80.0 - abs(power)) / 80.0
         }
     }
 }

@@ -26,12 +26,12 @@
                   moduleName = "Speaktionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rickwierenga/Developer/repos/public/Speaktionary/Speaktionary/SideTableViewController.swift"
-                  timestampString = "559928233.417412"
+                  timestampString = "577742522.194077"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "14"
                   endingLineNumber = "14"
-                  offsetFromSymbolStart = "133">
+                  offsetFromSymbolStart = "235">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "Speaktionary"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rickwierenga/Developer/repos/public/Speaktionary/Speaktionary/SideTableViewController.swift"
-                  timestampString = "559928233.422299"
+                  timestampString = "577742522.1974109"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "14"
                   endingLineNumber = "14"
-                  offsetFromSymbolStart = "1647">
+                  offsetFromSymbolStart = "1853">
                </Location>
             </Locations>
          </BreakpointContent>

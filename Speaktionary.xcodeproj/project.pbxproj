@@ -74,24 +74,72 @@
 		5801754B2157E80200474FB4 /* Speaktionary */ = {
 			isa = PBXGroup;
 			children = (
-				58DA3DA7215FD8EE00D9ED0F /* SavedTableViewController.swift */,
-				58DA3DA3215FA24700D9ED0F /* ContainerViewController.swift */,
-				58DA3DA5215FA25C00D9ED0F /* SideTableViewController.swift */,
-				58DA3D9F215F912C00D9ED0F /* STWord+CoreDataClass.swift */,
-				58DA3DA0215F912C00D9ED0F /* STWord+CoreDataProperties.swift */,
-				5801755E2157ECE200474FB4 /* Fonts */,
-				5801754C2157E80200474FB4 /* AppDelegate.swift */,
-				5801754E2157E80200474FB4 /* ViewController.swift */,
-				58E7D7C52159704800094461 /* SwiftyJSON.swift */,
-				580175502157E80200474FB4 /* Main.storyboard */,
-				580175532157E80300474FB4 /* Assets.xcassets */,
-				58DA3DA9215FED1100D9ED0F /* AboutViewController.swift */,
-				58DA3D9C215F90E500D9ED0F /* Model.xcdatamodeld */,
-				580175602157EEE800474FB4 /* MicrophoneButton.swift */,
-				580175552157E80300474FB4 /* LaunchScreen.storyboard */,
-				580175582157E80300474FB4 /* Info.plist */,
+				58EC1D5F226FA754009858AF /* supporting files */,
+				58EC1D5E226FA740009858AF /* views */,
+				58EC1D5D226FA733009858AF /* persistancy */,
+				58EC1D5C226FA71C009858AF /* controllers */,
+				58EC1D5B226FA717009858AF /* models */,
+				58EC1D5A226FA710009858AF /* utils */,
 			);
 			path = Speaktionary;
+			sourceTree = "<group>";
+		};
+		58EC1D5A226FA710009858AF /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				58E7D7C52159704800094461 /* SwiftyJSON.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		58EC1D5B226FA717009858AF /* models */ = {
+			isa = PBXGroup;
+			children = (
+				58DA3D9F215F912C00D9ED0F /* STWord+CoreDataClass.swift */,
+				58DA3DA0215F912C00D9ED0F /* STWord+CoreDataProperties.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		58EC1D5C226FA71C009858AF /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				58DA3DA9215FED1100D9ED0F /* AboutViewController.swift */,
+				5801754C2157E80200474FB4 /* AppDelegate.swift */,
+				58DA3DA3215FA24700D9ED0F /* ContainerViewController.swift */,
+				58DA3DA7215FD8EE00D9ED0F /* SavedTableViewController.swift */,
+				58DA3DA5215FA25C00D9ED0F /* SideTableViewController.swift */,
+				5801754E2157E80200474FB4 /* ViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		58EC1D5D226FA733009858AF /* persistancy */ = {
+			isa = PBXGroup;
+			children = (
+				58DA3D9C215F90E500D9ED0F /* Model.xcdatamodeld */,
+			);
+			path = persistancy;
+			sourceTree = "<group>";
+		};
+		58EC1D5E226FA740009858AF /* views */ = {
+			isa = PBXGroup;
+			children = (
+				580175502157E80200474FB4 /* Main.storyboard */,
+				580175602157EEE800474FB4 /* MicrophoneButton.swift */,
+				580175552157E80300474FB4 /* LaunchScreen.storyboard */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		58EC1D5F226FA754009858AF /* supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				580175582157E80300474FB4 /* Info.plist */,
+				5801755E2157ECE200474FB4 /* Fonts */,
+				580175532157E80300474FB4 /* Assets.xcassets */,
+			);
+			path = "supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,7 +372,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T79AMV799Y;
-				INFOPLIST_FILE = Speaktionary/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Speaktionary/supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -343,7 +391,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T79AMV799Y;
-				INFOPLIST_FILE = Speaktionary/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Speaktionary/supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
