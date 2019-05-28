@@ -14,6 +14,7 @@
 		580175572157E80300474FB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580175552157E80300474FB4 /* LaunchScreen.storyboard */; };
 		5801755F2157ECE200474FB4 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 5801755E2157ECE200474FB4 /* Fonts */; };
 		580175612157EEE800474FB4 /* MicrophoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580175602157EEE800474FB4 /* MicrophoneButton.swift */; };
+		58B1EDE3229D301F00FADFCC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 58B1EDE2229D301F00FADFCC /* .swiftlint.yml */; };
 		58DA3D9E215F90E500D9ED0F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3D9C215F90E500D9ED0F /* Model.xcdatamodeld */; };
 		58DA3DA1215F912C00D9ED0F /* STWord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3D9F215F912C00D9ED0F /* STWord+CoreDataClass.swift */; };
 		58DA3DA2215F912C00D9ED0F /* STWord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DA3DA0215F912C00D9ED0F /* STWord+CoreDataProperties.swift */; };
@@ -34,6 +35,7 @@
 		580175582157E80300474FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5801755E2157ECE200474FB4 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		580175602157EEE800474FB4 /* MicrophoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneButton.swift; sourceTree = "<group>"; };
+		58B1EDE2229D301F00FADFCC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		58DA3D9D215F90E500D9ED0F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		58DA3D9F215F912C00D9ED0F /* STWord+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STWord+CoreDataClass.swift"; sourceTree = "<group>"; };
 		58DA3DA0215F912C00D9ED0F /* STWord+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STWord+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		580175402157E80200474FB4 = {
 			isa = PBXGroup;
 			children = (
+				58B1EDE2229D301F00FADFCC /* .swiftlint.yml */,
 				5801754B2157E80200474FB4 /* Speaktionary */,
 				5801754A2157E80200474FB4 /* Products */,
 			);
@@ -152,6 +155,7 @@
 				580175452157E80200474FB4 /* Sources */,
 				580175462157E80200474FB4 /* Frameworks */,
 				580175472157E80200474FB4 /* Resources */,
+				58B1EDE1229D2E7F00FADFCC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -174,6 +178,7 @@
 				TargetAttributes = {
 					580175482157E80200474FB4 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -200,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B1EDE3229D301F00FADFCC /* .swiftlint.yml in Resources */,
 				580175572157E80300474FB4 /* LaunchScreen.storyboard in Resources */,
 				580175542157E80300474FB4 /* Assets.xcassets in Resources */,
 				580175522157E80200474FB4 /* Main.storyboard in Resources */,
@@ -208,6 +214,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		58B1EDE1229D2E7F00FADFCC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		580175452157E80200474FB4 /* Sources */ = {
@@ -371,7 +397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T79AMV799Y;
+				DEVELOPMENT_TEAM = S23Q9DM44M;
 				INFOPLIST_FILE = "$(SRCROOT)/Speaktionary/supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -380,7 +406,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rickwierenga.Speaktionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -390,7 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T79AMV799Y;
+				DEVELOPMENT_TEAM = S23Q9DM44M;
 				INFOPLIST_FILE = "$(SRCROOT)/Speaktionary/supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -399,7 +425,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rickwierenga.Speaktionary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

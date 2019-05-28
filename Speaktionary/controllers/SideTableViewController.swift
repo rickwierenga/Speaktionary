@@ -10,9 +10,11 @@ import UIKit
 
 class SideTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let parent = parent as? ContainerViewController else { return }
+
         tableView.deselectRow(at: indexPath, animated: true)
         let identifier = (tableView.cellForRow(at: indexPath)?.textLabel?.text)! + "ViewController"
-        (parent as! ContainerViewController).showVC(ContainerViewController.HamburgerItem(rawValue: identifier)!)
-        (parent as! ContainerViewController).toggleSideMenu()
+        parent.showVC(ContainerViewController.HamburgerItem(rawValue: identifier)!)
+        parent.toggleSideMenu()
     }
 }
