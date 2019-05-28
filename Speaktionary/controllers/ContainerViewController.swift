@@ -9,25 +9,21 @@
 import UIKit
 
 class ContainerViewController: UIViewController {
-    // MARK: - Data types
-    enum HamburgerItem: String {
+    enum Item: String {
         case record = "RecordViewController"
         case saved = "SavedViewController"
         case about = "AboutViewController"
     }
 
-    // MARK: - Private properties
-
     @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainContainerView: UIView!
+
     private var sideMenuOpen = false
 
-    // MARK: - Life cycle
     override func viewDidLoad() {
-        showVC(.record) // default is record
+        // The default view controller is the recording view controller. Show it.
+        showVC(.record)
     }
-
-    // MARK: - Public API
 
     @IBAction public func toggleSideMenu() {
         sideMenuConstraint.constant = sideMenuOpen ? -240.0 : 0
@@ -38,18 +34,17 @@ class ContainerViewController: UIViewController {
             options: .curveLinear,
             animations: {
                 self.view.layoutIfNeeded()
-        },
-            completion: nil)
+        })
     }
 
-    public func showVC(_ item: HamburgerItem) {
+    public func showVC(_ item: Item) {
         guard let navigationController = children[1] as? UINavigationController else { return }
 
-        // get new view controller
+        // get new view controller.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: item.rawValue)
 
-        // set the new view controller as the new child
+        // Set the new view controller as the new child.
         navigationController.viewControllers = [viewController]
         navigationController.popToRootViewController(animated: false)
     }

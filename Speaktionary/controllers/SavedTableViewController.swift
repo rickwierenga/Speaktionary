@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 class SavedTableViewController: UITableViewController {
-    // MARK: - Private properties
     private lazy var fetchRequest: NSFetchRequest<STWord> = {
         let fetchRequest = NSFetchRequest<STWord>(entityName: "STWord")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "entry", ascending: true)]
@@ -24,29 +23,25 @@ class SavedTableViewController: UITableViewController {
         return NSFetchedResultsController(fetchRequest: fetchRequest,
                                           managedObjectContext: managedContext,
                                           sectionNameKeyPath: nil,
-                                          cacheName: "SavedWords")
+                                          cacheName: "SavedWordsCache")
     }()
 
-    let showWordSegueIdentifier = "ShowWord"
-
-    // MARK: - Helpers
-    private func fetch() {
-        do {
-            try fetchedResultsContorller.performFetch()
-        } catch let error as NSError {
-            let alertController = UIAlertController(title: "Error fetching words",
-                                                    message: error.localizedDescription,
-                                                    preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            present(alertController, animated: true)
-
-            print(error)
-        }
-    }
+    fileprivate let showWordSegueIdentifier = "ShowWord"
 
     // MARK: - Life cycle
     override func viewDidLoad() {
-        self.fetch()
+        loadWords()
+    }
+
+    // MARK: - CoreData
+    func loadWords() {
+        do {
+            try fetchedResultsContorller.performFetch()
+            tableView.reloadData()
+        } catch let error as NSError {
+            presentAlert(withTitle: "Error fetching words", message: error.localizedDescription)
+            print(error)
+        }
     }
 
     // MARK: - UITableViewDataSource
@@ -66,9 +61,7 @@ class SavedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let word = fetchedResultsContorller.object(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "SavedCell", for: indexPath)
-
         cell.textLabel?.text = word.entry!
-
         return cell
     }
 
@@ -80,6 +73,7 @@ class SavedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
+
         switch editingStyle {
         case .delete:
             let word = fetchedResultsContorller.object(at: indexPath)
@@ -87,15 +81,9 @@ class SavedTableViewController: UITableViewController {
 
             do {
                 try managedContext.save()
-                self.fetch()
-                self.tableView.reloadData()
+                self.loadWords()
             } catch let error as NSError {
-                let alertController = UIAlertController(title: "Error deleting word",
-                                           message: error.localizedDescription,
-                                           preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                present(alertController, animated: true)
-
+                presentAlert(withTitle: "Error deleting word", message: error.localizedDescription)
                 print(error)
             }
         default:
@@ -111,10 +99,9 @@ class SavedTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case showWordSegueIdentifier:
-            guard let viewController = segue.destination as? ViewController else { fatalError() }
+            guard let viewController = segue.destination as? RecordViewController else { fatalError() }
             viewController.word = fetchedResultsContorller.object(at: sender as! IndexPath)
-        default:
-            break
+        default: break
         }
     }
 }

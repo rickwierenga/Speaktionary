@@ -12,11 +12,10 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    // MARK: - Private properties
     var window: UIWindow?
 
     var storeContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Model")
+        let container = NSPersistentContainer(name: "SavedWords")
 
         container.loadPersistentStores { (_, error) in
             if let error = error as NSError? {

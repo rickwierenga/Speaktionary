@@ -1,18 +1,24 @@
 //
-//  ViewController.swift
+//  RecordViewController.swift
 //  Speaktionary
 //
 //  Created by Rick Wierenga on 23/09/2018.
 //  Copyright © 2018 Rick Wierenga. All rights reserved.
 //
 
-import UIKit
-import Speech
 import AVFoundation
 import CoreData
+import Speech
+import UIKit
 
-class ViewController: UIViewController {
-    // MARK: - Private properties
+class RecordViewController: UIViewController {
+    public var word: STWord? {
+        didSet {
+            fatalError("implement")
+        }
+    }
+
+    // MARK: UI
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var waveView: UIView!
@@ -20,52 +26,35 @@ class ViewController: UIViewController {
 
     private var initialWaveViewHeight: CGFloat!
 
+    // MARK: Audio
+    private var audioEngine: AVAudioEngine!
+    private var inputNode: AVAudioInputNode!
+    private var session: AVAudioSession!
+
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest!
+
+    // MARK: CoreData
     private lazy var managedContext: NSManagedObjectContext = {
         // swiftlint:disable force_cast
         return (UIApplication.shared.delegate as! AppDelegate).managedContext
     }()
 
-    public var word: STWord?
-
     // MARK: - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // set to reference later
+        // Set to reference later.
         initialWaveViewHeight = waveView.frame.height
 
-        // check authorization
-        switch SFSpeechRecognizer.authorizationStatus() {
-        case .authorized:
-            self.microphoneButton.isEnabled = true
-
-        case .denied:
-            self.microphoneButton.isEnabled = false
-            showAlert(withMessage: "Please enable microphone access in settings")
-
-        case .restricted:
-            self.microphoneButton.isEnabled = false
-            showAlert(withMessage: "Please enable microphone access in settings")
-
-        case .notDetermined:
-            self.microphoneButton.isEnabled = false
-            requestAuthentication()
-        @unknown default:
-            fatalError()
-        }
-
-        // load word if it was added by the saved table view controller.
+        // Load word if it was added by the saved table view controller.
         if let word = word {
             wordLabel.text = word.entry!
-            resultLabel.text = word.definition ?? "no definition saved"
+            resultLabel.text = word.definitionString()
         }
     }
 
-    // MARK: - Alert Helpers
-    func showAlert(withMessage message: String) {
-        let alertController = UIAlertController(title: "Microphone Error", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true)
+    override func viewDidAppear(_ animated: Bool) {
+        checkAuthentication(forStatus: SFSpeechRecognizer.authorizationStatus())
     }
 
     // MARK: - IBActions
@@ -74,18 +63,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func microphoneTouchesEnded(_ sender: UIButton) {
-        // end session
         recognitionRequest.endAudio()
         audioEngine.stop()
     }
 
     // MARK: - Recording
-    private var audioEngine: AVAudioEngine!
-    private var inputNode: AVAudioInputNode!
-    private var session: AVAudioSession!
-
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest!
-
     func startRecording() {
         // Start a session and get an AVAudioEngine
         session = AVAudioSession.sharedInstance()
@@ -154,11 +136,11 @@ class ViewController: UIViewController {
     private func updateClassification(with recognitionRequest: SFSpeechAudioBufferRecognitionRequest) {
         // start a recognition task
         guard let recognizer = SFSpeechRecognizer() else {
-            // A recognizer is not supported for the current locale
+            // A recognizer is not supported for the current locale.
             return
         }
         if !recognizer.isAvailable {
-            // The recognizer is not available right now
+            // The recognizer is not available right now.
             return
         }
 
@@ -176,20 +158,27 @@ class ViewController: UIViewController {
             }
 
             if result.isFinal, let entry = result.bestTranscription.formattedString.components(separatedBy: " ").first {
-                // create a word object
                 let word = STWord(entry: entry, entity: STWord.entity(), insertInto: self.managedContext)
-
-                // tell STWord to fetch the defition. Once ready, set the definition to the resultLabel
                 self.wordLabel.text = word.entry
-                word.fetchMeaning({ definition in
-                    self.resultLabel.text = word.definition
-                    word.definition = definition
+                word.getDefinition({ result in
+                    switch result {
+                    case let .definitions(definitions):
+                        self.resultLabel.text = definitions.joined(separator: "\n\n")
+
+                    case let .error(error):
+                        self.presentAlert(withTitle: "Error Fetching Definition",
+                                          message: error.localizedDescription)
+
+                    case .notFound:
+                        self.presentAlert(withTitle: "Not Found",
+                                          message: "Could not find definition in Oxford Dictionaries.")
+                    }
                 })
 
-                // save to core data
                 do {
                     try self.managedContext.save()
                 } catch {
+                    self.presentAlert(withTitle: "Error Auto-Saving Word", message: error.localizedDescription)
                     print("error saving to core data", error)
                 }
             }
@@ -199,7 +188,8 @@ class ViewController: UIViewController {
     fileprivate func scaledPower(power: Float) -> Float {
         guard power.isFinite else { return 0.0 }
 
-        // Make sure the power has a reasonable value.
+        // Make sure the power has a reasonable value. If the value is not in the
+        // right domain, return a default value.
         if power < -80.0 {
             return 0.0
         } else if power >= 1.0 {
@@ -211,24 +201,33 @@ class ViewController: UIViewController {
     }
 
     // MARK: - Privacy
-    func requestAuthentication() {
+    private func checkAuthentication(forStatus status: SFSpeechRecognizerAuthorizationStatus) {
+        switch status {
+        case .authorized:
+            self.microphoneButton.isEnabled = true
+
+        case .denied:
+            self.microphoneButton.isEnabled = false
+            presentAlert(withTitle: "Access to microphone was denied",
+                         message: "Tru enabling microphone access in settings again.")
+
+        case .restricted:
+            self.microphoneButton.isEnabled = false
+            presentAlert(withTitle: "Access to microphone is restricted",
+                         message: "Tru enabling microphone access in settings again.")
+
+        case .notDetermined:
+            self.microphoneButton.isEnabled = false
+            requestAuthentication()
+        @unknown default:
+            fatalError()
+        }
+    }
+
+    private func requestAuthentication() {
         SFSpeechRecognizer.requestAuthorization { [unowned self] (authStatus) in
             OperationQueue.main.addOperation {
-                switch authStatus {
-                case .authorized:
-                    self.microphoneButton.isEnabled = true
-                case .denied:
-                    self.microphoneButton.isEnabled = false
-                    self.showAlert(withMessage: "Please enable microphone access in settings")
-                case .restricted:
-                    self.microphoneButton.isEnabled = false
-                    self.showAlert(withMessage: "Please enable microphone access in settings")
-                case .notDetermined:
-                    self.microphoneButton.isEnabled = false
-                    self.showAlert(withMessage: "Please enable microphone access in settings")
-                @unknown default:
-                    fatalError()
-                }
+                self.checkAuthentication(forStatus: authStatus)
             }
         }
     }

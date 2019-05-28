@@ -13,8 +13,9 @@ class SideTableViewController: UITableViewController {
         guard let parent = parent as? ContainerViewController else { return }
 
         tableView.deselectRow(at: indexPath, animated: true)
-        let identifier = (tableView.cellForRow(at: indexPath)?.textLabel?.text)! + "ViewController"
-        parent.showVC(ContainerViewController.HamburgerItem(rawValue: identifier)!)
+        let cell = tableView.cellForRow(at: indexPath)!
+        let identifier = cell.textLabel!.text! + "ViewController"
+        parent.showVC(ContainerViewController.Item(rawValue: identifier)!)
         parent.toggleSideMenu()
     }
 }

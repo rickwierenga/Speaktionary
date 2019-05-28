@@ -8,8 +8,7 @@
 
 import UIKit
 
-@IBDesignable
-class MicrophoneButton: UIButton {
+@IBDesignable class MicrophoneButton: UIButton {
     override func draw(_ rect: CGRect) {
         self.layer.cornerRadius = self.frame.width / 2
         self.clipsToBounds = true

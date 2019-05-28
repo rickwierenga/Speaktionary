@@ -17,38 +17,6 @@
             endingLineNumber = "14"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Speaktionary.SideTableViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Speaktionary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rickwierenga/Developer/repos/public/Speaktionary/Speaktionary/SideTableViewController.swift"
-                  timestampString = "577742522.194077"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "235">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Speaktionary.SideTableViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Speaktionary"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rickwierenga/Developer/repos/public/Speaktionary/Speaktionary/SideTableViewController.swift"
-                  timestampString = "577742522.1974109"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "1853">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

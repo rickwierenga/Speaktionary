@@ -2,8 +2,8 @@
 //  STWord+CoreDataProperties.swift
 //  Speaktionary
 //
-//  Created by Rick Wierenga on 29/09/2018.
-//  Copyright © 2018 Rick Wierenga. All rights reserved.
+//  Created by Rick Wierenga on 28/05/2019.
+//  Copyright © 2019 Rick Wierenga. All rights reserved.
 //
 //
 
@@ -16,7 +16,7 @@ extension STWord {
         return NSFetchRequest<STWord>(entityName: "STWord")
     }
 
+    @NSManaged public var definitions: [String]?
     @NSManaged public var entry: String?
-    @NSManaged public var definition: String?
 
 }
